@@ -1,11 +1,12 @@
 package Grade;
 
-import java.util.Vector;
+import java.util.Collections;
+import java.util.ArrayList;
 
 public class GradeServiceImp implements GradeService{
-	Vector<Grade> vec = new Vector<Grade>();
-	DescTotal descTotal = new DescTotal();
-	AscName ascName = new AscName();
+	ArrayList<Grade> vec = new ArrayList<Grade>();
+	DescTotal aSort = new DescTotal();
+	AscName bSort = new AscName();
 	
 	/*
 	 * 학생을 성적부에 등록하기 
@@ -29,7 +30,7 @@ public class GradeServiceImp implements GradeService{
 	 */
 
 	@Override
-	public Vector<Grade> getList() {
+	public ArrayList<Grade> getList() {
 		return vec;
 	}
 	/**
@@ -40,8 +41,8 @@ public class GradeServiceImp implements GradeService{
 	public Grade searchByHak(String hak) {
 		Grade search = new Grade();
 		for (int i = 0; i < vec.size(); i++) { // 1000대신에 백터의 length를 구하는 메소드를 찾아 볼것.
-			if (vec.elementAt(i).getHak().equals(hak)) {
-				search = vec.elementAt(i);
+			if (vec.get(i).getHak().equals(hak)) {
+				search = vec.get(i);
 				
 			}
 		}
@@ -52,33 +53,27 @@ public class GradeServiceImp implements GradeService{
 	 */
 
 	@Override
-	public Vector<Grade> searchByName(String name) {
-		Vector<Grade> search = new Vector<Grade>();
+	public ArrayList<Grade> searchByName(String name) {
+		ArrayList<Grade> search = new ArrayList<Grade>();
 		for (int i = 0; i < vec.size(); i++) {
-			if (vec.elementAt(i).getName().equals(name)) {
-				search.addElement(vec.elementAt(i));
+			if (vec.get(i).getName().equals(name)) {
+				search.add(vec.get(i));
 			}
 			
 		}
 		
 		return search;
 	}
+	@Override
+	public ArrayList<Grade> descGradeByTotal() {
+		Collections.sort(vec, aSort);
+		return vec;
+	}
+
+	@Override
+	public ArrayList<Grade> ascGradeByName() {
+		Collections.sort(vec, bSort);
+		return vec;
+	}
 	
-
-	@Override
-	public void descGradeByTotal() {
-		
-		
-	}
-
-	@Override
-	public void ascGradeByName() {
-		
-		
-	}
-	@Override
-	public void input(Grade grade) {
-
-		
-	}
 }

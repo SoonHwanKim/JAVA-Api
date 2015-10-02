@@ -46,8 +46,10 @@ public class Grade {
 	}
 	@Override
 	public String toString() {
-		return "성적 [학번=" + hak + ", 이름=" + name;
+		return "성적 [학번 : " + this.getHak() 
+				+ "이름 : " + this.getName() 
+				+ "국어 : " + this.getKor() 
+				+ "영어 : " + this.getEng() 
+				+ "수학 : " + this.getMath()+"]";
 	}
-	
-
 }

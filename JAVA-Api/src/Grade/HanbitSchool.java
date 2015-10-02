@@ -1,8 +1,10 @@
 package Grade;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class HanbitSchool {
+
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		GradeService service = new GradeServiceImp();
@@ -23,15 +25,31 @@ public class HanbitSchool {
 				eng = scanner.nextInt();
 				System.out.println("수학 :");
 				math = scanner.nextInt();
+				service.input(hak, name, kor, eng, math);
 				break;
 			case 2:
-				
+				ArrayList<Grade> vec = service.getList();
+				System.out.println(vec);
 				break;
-			case 3:break;
-			case 4:break;
-			case 5:break;
-			case 6:break;
-			case 7:break;
+			case 3:
+				System.out.println("학번 :");
+				hak = scanner.next();
+				System.out.println(service.searchByHak(hak));
+				break;
+			case 4:
+				System.out.println("이름 :");
+				name = scanner.next();
+				System.out.println(service.searchByName(name));
+				break;
+			case 5:
+				System.out.println(service.descGradeByTotal());
+				break;
+			case 6:
+				System.out.println(service.ascGradeByName());
+				break;
+			case 7:
+				System.out.println("종료");
+				break;
 			default:break;
 			}
 		}
